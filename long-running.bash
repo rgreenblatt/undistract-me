@@ -18,21 +18,6 @@ if [ -z "$UDM_PLAY_SOUND" ]; then
 	UDM_PLAY_SOUND=0
 fi
 
-# The pre-exec hook functionality is in a separate branch.
-if [ -z "$LONG_RUNNING_PREEXEC_LOCATION" ]; then
-    LONG_RUNNING_PREEXEC_LOCATION=/usr/share/undistract-me/preexec.bash
-fi
-
-if [ ! -f "$LONG_RUNNING_PREEXEC_LOCATION" ]; then
-    LONG_RUNNING_PREEXEC_LOCATION="$( dirname "${BASH_SOURCE[0]}" )/preexec.bash"
-fi
-
-if [ -f "$LONG_RUNNING_PREEXEC_LOCATION" ]; then
-    . $LONG_RUNNING_PREEXEC_LOCATION
-else
-    echo "Could not find preexec.bash"
-fi
-
 
 function notify_when_long_running_commands_finish_install() {
 
@@ -124,9 +109,4 @@ function notify_when_long_running_commands_finish_install() {
         __udm_last_command=$(echo "$1")
         __udm_last_window=$(active_window_id)
     }
-
-    if [ ! -n "$BASH" ];  then
-        # ZSH knows precmd and preexec, so this is unnecessary there (and broken too)
-        preexec_install
-    fi
 }

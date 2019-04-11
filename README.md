@@ -1,6 +1,11 @@
 # undistract-me
 
-Notifies you when long-running terminal commands complete.
+Notifies you when long-running terminal commands complete. 
+
+This is a fork of the original with the following modifications:
+-   Only supports zsh (original only supports bash).
+-   No package.
+-   Better documentation in the README?
 
 ## What is this?
 
@@ -27,20 +32,12 @@ that took longer than ten seconds to finish.
 
 ## Installation
 
-### From the Ubuntu repositories
+Clone the repo somewhere and add to your zshrc: 
 
-    $ sudo apt install undistract-me
-
-### From the branch
-
-    $ bzr checkout --lightweight lp:undistract-me
-    $ . undistract-me/long-running.bash
-    $ notify_when_long_running_commands_finish_install
-
-### Add to your Bash
-
-    $ echo 'source /etc/profile.d/undistract-me.sh' >> ~/.bashrc
-
+```
+source /path/to/repo/long-running.bash
+notify_when_long_running_commands_finish_install
+```
 ## Configuration
 
 By default, a long-running command is any command that takes more than 10s to
